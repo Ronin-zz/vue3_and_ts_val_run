@@ -1,7 +1,3 @@
-declare interface BackValues {
-  num: number;
-}
-
 interface TextInter {
   /* 轮播文字的内容 */
   text: string;
