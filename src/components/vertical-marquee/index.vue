@@ -39,6 +39,7 @@ function changeActiveValue(): number {
     if (defaultIndex >= clonePropsData.length) {
       defaultIndex = 0;
     }
+    outerHeight.value = children.value![defaultIndex].offsetHeight;
     clonePropsData[defaultIndex].active = true;
   }, 3000)
 }
@@ -91,7 +92,8 @@ function partMouseEnter(ev: MouseEvent) {
       transform: item.active ? `translateY(${item.end}px)` : `translateY(${item.begin}px)`,
       transition: animate
     }" v-for="(item, index) in clonePropsData" :key="index">
-      {{ item.text }}
+      <div v-if="item.type === 'html'" v-html="item.text"></div>
+      <div v-else>{{ item.text }}</div>
     </div>
   </div>
 

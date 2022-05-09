@@ -9,4 +9,6 @@ interface TextInter {
   begin?: number;
   /* 结束的坐标 */
   end?: number;
+  /* 标识此项是 html 还是 text */
+  type: "html" | "text";
 }

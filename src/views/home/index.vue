@@ -2,9 +2,9 @@
 import VerticalMarquee from '../../components/vertical-marquee/index.vue';
 
 const data: Array<TextInter> = [
-  { text: '发撒打发手动阀手动阀', color: 'red', active: true, begin: -100, end: 0 },
-  { text: 'aaaa', active: false, begin: -100, end: 0 },
-  { text: '第三', active: true, begin: -100, end: 0 }
+  { text: '我是普通的子元素', color: 'red', active: true, begin: -100, end: 0, type: 'text' },
+  { text: '<h1>我是标签传递的子元素</h1>', active: false, color: 'green', begin: -100, end: 0, type: 'html' },
+  { text: '<h2>我是h2</h2>', active: true, begin: -100, end: 0, type: 'html' }
 ]
 
 function mouseenter(ev: MouseEvent) {
