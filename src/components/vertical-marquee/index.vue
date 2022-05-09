@@ -3,26 +3,15 @@ import { defineProps, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 import router from '../../router';
 
 
-interface TextInter {
-  /* 轮播文字的内容 */
-  text: string;
-  /* 轮播文字的颜色 */
-  color?: string,
-  /* 默认展示 */
-  active: boolean,
-  /* 开始的起点坐标 */
-  begin?: number,
-  /* 结束的坐标 */
-  end?: number,
-}
-
 const text = withDefaults(defineProps<{
   text: Array<TextInter>;
   mouseenter: (ev: MouseEvent) => void;
   mouseleave: (ev: MouseEvent) => void;
   marginTop?: number;
+  delay?: number,
   animate: string
 }>(), {
+  delay: 500,
   marginTop: 30,
 })
 
@@ -73,11 +62,12 @@ onMounted(() => {
   timerOut2 = setTimeout(() => {
     outerHeight.value = children.value![0].offsetHeight;
     timerInter = changeActiveValue()
-  }, 1000)
+  }, text.delay)
   init();
 })
 
 function partMouseleave(ev: MouseEvent) {
+  clearInterval(timerInter)
   timerInter = changeActiveValue()
   text.mouseleave(ev)
 }
