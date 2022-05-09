@@ -12,11 +12,8 @@ function handleClick() {
 }
 
 function mouseenter(ev: MouseEvent, values: BackValues) {
-  console.log(values);
-  clearInterval(values.num)
 }
 function mouseleave(ev: MouseEvent) {
-  console.log(ev);
 }
 </script>
 

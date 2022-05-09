@@ -47,7 +47,7 @@ function changeActiveValue(): number {
 clonePropsData.forEach(item => {
   item.active = false;
 })
-let timer = setTimeout(() => {
+setTimeout(() => {
   clonePropsData[defaultIndex].active = true
 }, 1000);
 
@@ -60,13 +60,23 @@ onMounted(() => {
     timerInter = changeActiveValue()
   }, 1000)
 })
+
+function partMouseleave(ev: MouseEvent) {
+  timerInter = changeActiveValue()
+  text.mouseleave(ev, { num: timerInter })
+}
+
+function partMouseEnter(ev: MouseEvent) {
+  clearInterval(timerInter);
+  text.mouseleave(ev, { num: timerInter })
+}
 </script>
 
 <template>
   <div class="outer" :style="{ height: outerHeight + 30 + 'px' }">
-    <div ref="children" class="children" :class="{ active: item.active }"
-      @mouseenter="mouseenter($event, { num: timer })" @mouseleave="mouseleave($event, { num: timerInter })"
-      :style="{ color: item.color, opacity: item.active ? 1 : 0 }" v-for="(item, index) in clonePropsData" :key="index">
+    <div ref="children" class="children" :class="{ active: item.active }" @mouseenter="partMouseEnter"
+      @mouseleave="partMouseleave" :style="{ color: item.color, opacity: item.active ? 1 : 0 }"
+      v-for="(item, index) in clonePropsData" :key="index">
       {{ item.text }}
     </div>
   </div>
