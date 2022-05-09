@@ -11,7 +11,7 @@ function handleClick() {
   console.log('per');
 }
 
-function mouseenter(ev: MouseEvent, values: BackValues) {
+function mouseenter(ev: MouseEvent) {
 }
 function mouseleave(ev: MouseEvent) {
 }
@@ -19,6 +19,7 @@ function mouseleave(ev: MouseEvent) {
 
 <template>
   <div ref="sss" @click="handleClick"></div>
-  <VerticalMarquee :text="[{ text: 'sss', color: 'red', active: true }, { text: 'aaaa', active: false }]"
-    :mouseenter="mouseenter" :mouseleave="mouseleave" />
+  <VerticalMarquee
+    :text="[{ text: 'sss', color: 'red', active: true, begin: -100, end: 0 }, { text: 'aaaa', active: false, begin: -100, end: 0 }]"
+    :mouseenter="mouseenter" :mouseleave="mouseleave" :margin-top="100" :animate="`all ease-in 2s`" />
 </template>
